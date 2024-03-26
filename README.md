@@ -20,7 +20,7 @@
 > request.cookies # <dict>
 > request.content # <bytes>
 >
-> request = requests.get("https://httpbin.org/ip", data={"a": "A"}, params={"b": "B"}, cookies={"c":"C"}, headers={"User-Agent": "bsecure/1.0"})
+> request = requests.post("https://httpbin.org/ip", data={"a": "A"}, params={"b": "B"}, cookies={"c":"C"}, headers={"User-Agent": "bsecure/1.0"})
 >
 > session = requests.Session()
 > session.get
