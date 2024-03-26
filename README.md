@@ -3,9 +3,9 @@
 *bsecure* is a module designed for secure POST and GET requests with traffic capturing prevention. It provides features such as handling data parameters, headers, cookies, sessions, as well as secure JSON encoding/decoding, gzip compression, base64 encoding, and terminal color formatting. Additionally, it includes a Loading class for displaying loading indicators in the terminal.
 
 ## Supported Platforms
-* ### Termux
-  + aarch64
-  + arm
+1. Termux
+   * aarch64
+   * arm
 
 ## Includes
 > ### requests (Created by Binyamin Binni)
