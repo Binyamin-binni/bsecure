@@ -93,7 +93,7 @@ from bsecure import requests
 requests.ENCRYPTION_KEY = "any key you want to place" # default is "bsecure"
 requests.ENCRYPTION_STRENGTH = 35 # any number from 1 to 9999; default is 7
 
-# Note: don't include follwing code section in production level 🤣
+# Note: don't include following code section in production level 🤣
 url = "https://httpbin.org/post" # any url that you want to encrypt
 data = {"any_key": "any_value"} # your required data
 headers = {'user-agent': 'any user agent'} # required headers
