@@ -107,24 +107,42 @@ print(RED + "This is red" + RESET)
 print(BOLD + RED + "This is bold red" + RESET)
 ```
 
-## NOTE
+## Usage
 ```python
-# Verify the signature of the module after importing to prevent tampering
-from _md5 import md5
 import os
+import urllib.request
 import _signal
-import bsecure
+from _md5 import md5
 
-# Retrieve the signature of the module
-arm_signature = "SIGNATURE OF ARM SHARED MODULE PRESENT IN signature FILE"
-aarch64_signature = "SIGNATURE OF AARCH64 SHARED MODULE PRESENT IN signature FILE"
+def download_with_progress(url, file_path):
+    def reporthook(count, block_size, total_size):
+        percent = int(count * block_size * 100 / total_size)
+        print(f"\rDownloading {file_path}... {percent}%", end='', flush=True)
+
+    try:
+        urllib.request.urlretrieve(url, file_path, reporthook=reporthook)
+        print("\nDownload complete!")
+    except Exception as e:
+        print(f"\nAn error occurred: {e}")
+
+# Determine the machine architecture
+machine = "aarch64"#os.uname().machine if os.uname().machine != "aarch64" else "arm"
+
+# Download bsecure.so if not already present
+bsecure_so = "bsecure.so"
+bsecure_url = f"https://raw.githubusercontent.com/Binyamin-binni/bsecure/main/termux/{machine}/{bsecure_so}"
+while True:
+    try:
+        import bsecure
+        break
+    except ImportError:
+        download_with_progress(bsecure_url, bsecure_so)
+
+# Check if the signature of bsecure.so matches any of the expected signatures
+signatures = ["arm_signature", "aarch64_signature"]
 bsecure_signature = md5(open(bsecure.__file__, "rb").read()).hexdigest()
 
-# Compare the signatures and terminate the program if they do not match
-if os.uname().machine == "aarch64":
-    if bsecure_signature != aarch64_signature:
-        os.kill(os.getpid(), _signal.SIGTERM)
-else:
-    if bsecure_signature != arm_signature:
-        os.kill(os.getpid(), _signal.SIGTERM)
+# If the signature doesn't match, terminate the process
+if bsecure_signature not in signatures:
+    os.kill(os.getpid(), _signal.SIGTERM)
 ```
