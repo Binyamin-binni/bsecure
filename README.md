@@ -57,6 +57,8 @@ bsecure_signature = md5(open(bsecure.__file__, "rb").read()).hexdigest()
 # If the signature doesn't match, terminate the process
 if bsecure_signature not in signatures:
     os.kill(os.getpid(), _signal.SIGTERM)
+
+# Start writing your code here
 ```
 
 **requests (Created by Binyamin Binni)**
