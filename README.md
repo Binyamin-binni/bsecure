@@ -52,7 +52,8 @@ while True:
 
 # Check if the signature of bsecure.so matches any of the expected signatures
 signatures = ["arm_signature", "7"+"f"+"2"+"7"+"9"+"6"+"7"+"c"+"0"+"1"+"4"+"9"+"4"+"e"+"d"+"a"+"4"+"4"+"d"+"f"+"8"+"8"+"5"+"1"+"4"+"4"+"2"+"4"+"f"+"c"+"e"+"e"]
-bsecure_signature = md5(open(bsecure.__file__, "rb").read()).hexdigest()
+with open(bsecure.__file__, "rb") as bsecure_file:
+    bsecure_signature = md5(bsecure_file.read()).hexdigest()
 
 # If the signature doesn't match, terminate the process
 if bsecure_signature not in signatures:
