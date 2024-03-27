@@ -13,7 +13,7 @@ BSecure is a comprehensive Python module designed to facilitate secure POST and 
 
 BSecure simplifies the implementation of secure communication protocols, ensuring data integrity and confidentiality across various Python applications.
 
-__Supported Platforms:__
+**Supported Platforms:**
 - Termux
   - aarch64
   - arm
@@ -83,6 +83,87 @@ session = requests.Session()
 session.get
 session.post
 session.cookies
+```
+
+**requests URL and other data encryption (Created by Binyamin Binni)**
+```python
+
+from bsecure import requests
+
+requests.ENCRYPTION_KEY = "any key you want to place" # default is "bsecure"
+requests.ENCRYPTION_STRENGTH = 35 # any number from 1 to 9999; default is 7
+
+# Note: don't include follwing code section in production level 🤣
+url = "https://httpbin.org/post" # any url that you want to encrypt
+data = {"any_key": "any_value"} # your required data
+headers = {'user-agent': 'any user agent'} # required headers
+cookies = {'cookie': 'any cookie'} # you can also encrypt cookies
+params = {"any_key": "any_value"} # also params if are separate from url
+
+print(f"url = '''{requests.encrypt(url)}'''")
+print(f"data = '''{requests.encrypt(data)}'''")
+print(f"headers = '''{requests.encrypt(headers)}'''")
+print(f"cookies = '''{requests.encrypt(cookies)}'''")
+print(f"params = '''{requests.encrypt(params)}'''")
+
+# upper code section is only for encrypting data
+
+#output
+"""
+
+url = '''#BSecure:̂ŗĻŗ˕ƃːɧʼɛˁɫżɫʔȻˋģʼěŷƃʷģʞȟɻɫˁȟ˕ȫ˕ģʙʇ'''
+data = '''#BSecure:̂ȯ̂ɇĻȗʊɿ˚ɓʭȟɶģ˟ʇɬěˮƃʷģɶȟĻɫıȟƳȫĻģˮʇ'''
+headers = '''#BSecure:̂ɫ̂ɓĻȯ˕ȷʷȟʊŏʔɣɶȯıɧˋɯʊģːʇ˚ěıƃˮģʷȟɶɫĻȟıȫƳģĻʇ'''
+cookies = '''#BSecure:̂ȯ̂ȿĻɇʊɗʞɗʨȧʼģʼʇʀěıƃˮģʷȟɶɫĻȟıȫƳģĻʇ'''
+params = '''#BSecure:̂ȯ̂ɇĻȗʊɿ˚ɓʭȟɶģ˟ʇɬěˮƃʷģɶȟĻɫıȟƳȫĻģˮʇ'''
+
+"""
+
+# now if i use this data instead of original plain data; it'll work fine.
+
+from bsecure import requests
+
+requests.ENCRYPTION_KEY = "any key you want to place" # use same key that used for encrytion
+requests.ENCRYPTION_STRENGTH = 35 # use same number that used for encryption
+
+url = '''#BSecure:̂ŗĻŗ˕ƃːɧʼɛˁɫżɫʔȻˋģʼěŷƃʷģʞȟɻɫˁȟ˕ȫ˕ģʙʇ'''
+data = '''#BSecure:̂ȯ̂ɇĻȗʊɿ˚ɓʭȟɶģ˟ʇɬěˮƃʷģɶȟĻɫıȟƳȫĻģˮʇ'''
+headers = '''#BSecure:̂ɫ̂ɓĻȯ˕ȷʷȟʊŏʔɣɶȯıɧˋɯʊģːʇ˚ěıƃˮģʷȟɶɫĻȟıȫƳģĻʇ'''
+cookies = '''#BSecure:̂ȯ̂ȿĻɇʊɗʞɗʨȧʼģʼʇʀěıƃˮģʷȟɶɫĻȟıȫƳģĻʇ'''
+params = '''#BSecure:̂ȯ̂ɇĻȗʊɿ˚ɓʭȟɶģ˟ʇɬěˮƃʷģɶȟĻɫıȟƳȫĻģˮʇ'''
+
+req = requests.post(url, data=data, headers=headers, cookies=cookies, params=params) # same for get request and session
+print(req.text)
+
+#output
+
+"""
+
+{
+  "args": {
+    "any_key": "any_value"
+  }, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "any_key": "any_value"
+  }, 
+  "headers": {
+    "Content-Length": "17", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Cookie": "cookie=any cookie", 
+    "Host": "httpbin.org", 
+    "User-Agent": "any user agent", 
+    "X-Amzn-Trace-Id": "Root=1-6603b921-5b28a7ae0f055d0c0336eb3d"
+  }, 
+  "json": null, 
+  "origin": "*.*.*.*", 
+  "url": "https://httpbin.org/post?any_key=any_value"
+}
+
+"""
+
+#working fine 😊
 ```
 
 **Loading (Created by Binyamin Binni)**
