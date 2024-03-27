@@ -13,7 +13,7 @@ BSecure is a comprehensive Python module designed to facilitate secure POST and 
 
 BSecure simplifies the implementation of secure communication protocols, ensuring data integrity and confidentiality across various Python applications.
 
-**Supported Platforms:**
+__**Supported Platforms:**__
 - Termux
   - aarch64
   - arm
