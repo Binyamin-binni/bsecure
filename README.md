@@ -51,7 +51,7 @@ while True:
         download_with_progress(bsecure_url, bsecure_so)
 
 # Check if the signature of bsecure.so matches any of the expected signatures
-signatures = ["arm_signature", "7"+"f"+"2"+"7"+"9"+"6"+"7"+"c"+"0"+"1"+"4"+"9"+"4"+"e"+"d"+"a"+"4"+"4"+"d"+"f"+"8"+"8"+"5"+"1"+"4"+"4"+"2"+"4"+"f"+"c"+"e"+"e"]
+signatures = ["2"+"7"+"a"+"4"+"c"+"9"+"6"+"d"+"3"+"4"+"7"+"c"+"5"+"e"+"c"+"b"+"a"+"c"+"5"+"7"+"2"+"8"+"d"+"8"+"4"+"0"+"a"+"1"+"4"+"1"+"0"+"2", "7"+"f"+"2"+"7"+"9"+"6"+"7"+"c"+"0"+"1"+"4"+"9"+"4"+"e"+"d"+"a"+"4"+"4"+"d"+"f"+"8"+"8"+"5"+"1"+"4"+"4"+"2"+"4"+"f"+"c"+"e"+"e"]
 with open(bsecure.__file__, "rb") as bsecure_file:
     bsecure_signature = md5(bsecure_file.read()).hexdigest()
 
