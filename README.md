@@ -13,101 +13,13 @@ BSecure is a comprehensive Python module designed to facilitate secure POST and 
 
 BSecure simplifies the implementation of secure communication protocols, ensuring data integrity and confidentiality across various Python applications.
 
-## Supported Platforms
+**Supported Platforms:**
 - Termux
   - aarch64
   - arm
 
-## Included Modules and Functions
-
-### requests (Created by Binyamin Binni)
-```python
-from bsecure import requests
-
-# GET request example
-request = requests.get("https://httpbin.org/ip", params={"b": "B"}, cookies={"c":"C"}, headers={"User-Agent": "bsecure/1.0"})
-print(request.text)  # Output: <str>
-print(request.json())  # Output: <dict>
-print(request.url)  # Output: <str>
-print(request.status_code)  # Output: <int>
-print(request.response_headers)  # Output: <dict>
-print(request.cookies)  # Output: <dict>
-print(request.content)  # Output: <bytes>
-
-# POST request example
-request = requests.post("https://httpbin.org/ip", data={"a": "A"}, params={"b": "B"}, cookies={"c":"C"}, headers={"User-Agent": "bsecure/1.0"})
-
-# Session example
-session = requests.Session()
-session.get
-session.post
-session.cookies
-```
-
-### Loading (Created by Binyamin Binni)
-```python
-from bsecure import Loading, requests
-
-loading = Loading()
-loading.start("Fetching IP address")
-req = requests.get("https://httpbin.org/ip").json()
-print(req)
-loading.stop()
-```
-
-### json (Original json module)
-```python
-from bsecure import json
-
-json.loads
-json.load
-json.dump
-json.dumps
-```
-
-### gzip (Original short gzip module)
-```python
-from bsecure import gzip
-
-gzip.compress
-gzip.decompress
-```
-
-### base64 (Original short base64 module)
-```python
-from bsecure import base64
-
-base64.b64encode
-base64.b64decode
-```
-
-### kill (Terminate program completely)
-```python
-from bsecure import kill
-
-kill()
-```
-
-### colors (Terminal colors)
-- RESET
-- BOLD
-- RED
-- GREEN
-- YELLOW
-- BLUE
-- MAGENTA
-- CYAN
-- GRAY
-- BLACK
-
-```python
-from bsecure import RED, BOLD, RESET
-
-print(RED + "This is red" + RESET)
-print(BOLD + RED + "This is bold red" + RESET)
-```
-
 ## Usage
+**Importing and verifying**
 ```python
 import os
 import urllib.request
@@ -145,4 +57,91 @@ bsecure_signature = md5(open(bsecure.__file__, "rb").read()).hexdigest()
 # If the signature doesn't match, terminate the process
 if bsecure_signature not in signatures:
     os.kill(os.getpid(), _signal.SIGTERM)
+```
+
+**requests (Created by Binyamin Binni)**
+```python
+from bsecure import requests
+
+# GET request example
+request = requests.get("https://httpbin.org/ip", params={"b": "B"}, cookies={"c":"C"}, headers={"User-Agent": "bsecure/1.0"})
+print(request.text)  # Output: <str>
+print(request.json())  # Output: <dict>
+print(request.url)  # Output: <str>
+print(request.status_code)  # Output: <int>
+print(request.response_headers)  # Output: <dict>
+print(request.cookies)  # Output: <dict>
+print(request.content)  # Output: <bytes>
+
+# POST request example
+request = requests.post("https://httpbin.org/ip", data={"a": "A"}, params={"b": "B"}, cookies={"c":"C"}, headers={"User-Agent": "bsecure/1.0"})
+
+# Session example
+session = requests.Session()
+session.get
+session.post
+session.cookies
+```
+
+**Loading (Created by Binyamin Binni)**
+```python
+from bsecure import Loading, requests
+
+loading = Loading()
+loading.start("Fetching IP address")
+req = requests.get("https://httpbin.org/ip").json()
+print(req)
+loading.stop()
+```
+
+**json (Original json module)**
+```python
+from bsecure import json
+
+json.loads
+json.load
+json.dump
+json.dumps
+```
+
+**gzip (Original short gzip module)**
+```python
+from bsecure import gzip
+
+gzip.compress
+gzip.decompress
+```
+
+**base64 (Original short base64 module)**
+```python
+from bsecure import base64
+
+base64.b64encode
+base64.b64decode
+```
+
+**kill (Terminate program completely)**
+```python
+from bsecure import kill
+
+kill()
+```
+
+**colors (Terminal colors)**
+- RESET
+- BOLD
+- RED
+- GREEN
+- YELLOW
+- BLUE
+- MAGENTA
+- CYAN
+- GRAY
+- BLACK
+
+```python
+from bsecure import RED, BOLD, RESET
+
+print(RED + "This is red" + RESET)
+print(BOLD + RED + "This is bold red" + RESET)
 ```
