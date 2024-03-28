@@ -38,7 +38,7 @@ def download_with_progress(url, file_path):
         print(f"\nAn error occurred: {e}")
 
 # Determine the machine architecture
-machine = os.uname().machine if os.uname().machine != "aarch64" else "arm"
+machine = "arm" if os.uname().machine.startswith("arm") else "aarch64"
 
 # Download bsecure.so if not already present
 bsecure_so = "bsecure.so"
