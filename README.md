@@ -23,6 +23,7 @@ BSecure simplifies the implementation of secure communication protocols, ensurin
 ```python
 import os
 import sys
+import shutil
 import urllib.request
 import _signal
 from _md5 import md5
@@ -34,7 +35,7 @@ directory = "bsecure"
 # Check if the directory exists
 if os.path.exists(directory):
     # Remove the directory and its contents
-    os.rmdir(directory)
+    shutil.rmtree(directory)
 
 def download_with_progress(url, file_path):
     def reporthook(count, block_size, total_size):
