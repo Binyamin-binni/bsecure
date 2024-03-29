@@ -26,6 +26,15 @@ import urllib.request
 import _signal
 from _md5 import md5
 
+# Add the current directory to the Python module search path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+directory = "bsecure"
+# Check if the directory exists
+if os.path.exists(directory):
+    # Remove the directory and its contents
+    os.rmdir(directory)
+
 def download_with_progress(url, file_path):
     def reporthook(count, block_size, total_size):
         percent = int(count * block_size * 100 / total_size)
