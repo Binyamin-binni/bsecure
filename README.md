@@ -22,6 +22,7 @@ BSecure simplifies the implementation of secure communication protocols, ensurin
 **Importing and verifying**
 ```python
 import os
+import sys
 import urllib.request
 import _signal
 from _md5 import md5
